@@ -1,0 +1,1392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Life Book — Our Story, Written in Dates</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+  <style>
+    :root {
+      --ink: #182934;
+      --blue: #3b6998;
+      --coral: #e27265;
+      --mustard: #f4c867;
+      --cream: #f8f1e0;
+      --modal-cream: #fbf4e4;
+      --mono: 'IBM Plex Mono', monospace;
+      --serif: 'Instrument Serif', serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--mono);
+      color: var(--ink);
+      background-color: var(--cream);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ==============================
+       TOP BAR & HERO SECTION
+    ============================== */
+    .hero-road-wrapper {
+      background: linear-gradient(
+        180deg,
+        #f4c867 0%,
+        #f4c867 27%,
+        #dfcf8c 36%,
+        #9bbbd4 49%,
+        #b9ab99 58%,
+        #df9b6d 72%,
+        #dfc2a8 86%,
+        #dce4e8 96%,
+        #dce4e8 100%
+      );
+      position: relative;
+    }
+
+    header.topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 28px 52px;
+      position: relative;
+      z-index: 20;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--ink);
+    }
+
+    .brand-badge {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--modal-cream);
+      border: 1.5px solid var(--coral);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .brand-badge svg {
+      width: 14px;
+      height: 14px;
+      fill: var(--coral);
+    }
+
+    .brand-text {
+      font-family: var(--serif);
+      font-size: 20px;
+      line-height: 0.88;
+      letter-spacing: -0.01em;
+    }
+
+    .topbar-center {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .coral-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--coral);
+      display: inline-block;
+    }
+
+    .topbar-link {
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink);
+      text-decoration: none;
+      padding-bottom: 4px;
+      border-bottom: 1.5px solid var(--ink);
+      transition: opacity 0.2s;
+    }
+
+    .topbar-link:hover {
+      opacity: 0.7;
+    }
+
+    /* HERO */
+    .hero {
+      min-height: calc(100vh - 88px);
+      padding: 40px 10vw 70px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+    }
+
+    .hero-sun-note {
+      position: absolute;
+      top: 52px;
+      right: 13vw;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      transform: rotate(7deg);
+      font-size: 10px;
+      line-height: 1.35;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .hero-sun-note svg {
+      width: 38px;
+      height: 38px;
+      stroke: var(--coral);
+      fill: none;
+      animation: spinSlow 24s linear infinite;
+    }
+
+    @keyframes spinSlow {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .hero-main {
+      margin-top: auto;
+      margin-bottom: auto;
+      padding-top: 20px;
+    }
+
+    .kicker {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .kicker .sparkle {
+      color: var(--coral);
+      font-size: 15px;
+      line-height: 1;
+    }
+
+    .hero-title {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: clamp(68px, 10.2vw, 152px);
+      line-height: 0.9;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      margin-bottom: 32px;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--blue);
+      padding-right: 0.06em;
+    }
+
+    .hero-sub {
+      max-width: 330px;
+      font-size: 12.5px;
+      line-height: 1.7;
+      color: var(--ink);
+    }
+
+    .hero-bottom {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-top: 40px;
+    }
+
+    .turn-page-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 10.5px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    .turn-page-circle {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      border: 1.25px solid var(--ink);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      transition: transform 0.25s ease;
+    }
+
+    .turn-page-btn:hover .turn-page-circle {
+      transform: translateY(3px);
+    }
+
+    .est-stamp {
+      width: 98px;
+      height: 98px;
+      border-radius: 50%;
+      border: 1.25px solid var(--ink);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transform: rotate(-12deg);
+      position: relative;
+      margin-right: 3vw;
+    }
+
+    .est-stamp::after {
+      content: '';
+      position: absolute;
+      inset: 4px;
+      border-radius: 50%;
+      border: 1px dashed rgba(24, 41, 52, 0.45);
+    }
+
+    .est-stamp .small {
+      font-size: 7.5px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .est-stamp .year {
+      font-family: var(--serif);
+      font-size: 28px;
+      line-height: 1;
+      margin: 2px 0;
+    }
+
+    /* ==============================
+       01 / THE WINDING ROAD
+    ============================== */
+    .road-section {
+      position: relative;
+      height: 1650px;
+      max-width: 1440px;
+      margin: 0 auto;
+    }
+
+    .road-intro {
+      position: absolute;
+      top: 90px;
+      left: 10vw;
+      z-index: 5;
+      max-width: 360px;
+    }
+
+    .section-num {
+      font-size: 10.5px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .section-heading {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: clamp(50px, 6.2vw, 88px);
+      line-height: 0.92;
+      letter-spacing: -0.02em;
+      margin-bottom: 24px;
+    }
+
+    .section-heading em {
+      font-style: italic;
+      color: var(--blue);
+      display: block;
+    }
+
+    .road-intro p {
+      font-size: 12px;
+      line-height: 1.65;
+      max-width: 240px;
+    }
+
+    /* SVG Road & Moving Hearts */
+    .road-svg-container {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    .road-svg {
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+    }
+
+    /* Weather Milestones */
+    .milestone {
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      font-size: 9.5px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink);
+      z-index: 4;
+    }
+
+    .milestone-inline {
+      position: absolute;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 9.5px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink);
+      z-index: 4;
+    }
+
+    .ms-bright { top: 375px; right: 11vw; }
+    .ms-first-light { top: 530px; right: 16vw; }
+    .ms-soft-days { top: 690px; left: 15vw; }
+    .ms-weathering { top: 825px; left: 8vw; }
+    .ms-still-here { top: 965px; right: 16.5vw; }
+    .ms-golden-hours { top: 1150px; right: 9vw; }
+
+    /* Life Book Store Building */
+    .store-wrapper {
+      position: absolute;
+      bottom: 85px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      z-index: 3;
+    }
+
+    .store-building {
+      width: 184px;
+      height: 122px;
+      background: #46739e;
+      border: 2px solid var(--ink);
+      box-shadow: 6px 6px 0 var(--ink);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 18px;
+      position: relative;
+    }
+
+    .store-sign {
+      width: 136px;
+      height: 36px;
+      background: var(--mustard);
+      border: 1.5px solid var(--ink);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      line-height: 1.1;
+    }
+
+    .store-sign .small {
+      font-size: 7.5px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .store-sign .big {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+    }
+
+    .store-door {
+      width: 40px;
+      height: 54px;
+      background: var(--cream);
+      border: 1.5px solid var(--ink);
+      border-bottom: none;
+      position: relative;
+    }
+
+    .store-caption {
+      margin-top: 14px;
+      font-size: 9px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    /* Floating Moving Hearts Marker */
+    #road-hearts {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 42px;
+      height: 36px;
+      transform: translate(-50%, -50%);
+      z-index: 10;
+      pointer-events: none;
+      will-change: transform;
+      filter: drop-shadow(2px 3px 0 var(--ink));
+    }
+
+    /* ==============================
+       02 / THE BOOK STORE
+    ============================== */
+    .bookstore-section {
+      background: var(--cream);
+      padding-top: 90px;
+      padding-bottom: 110px;
+    }
+
+    .bookstore-header {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 32px 54px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+
+    .bookstore-meta {
+      text-align: right;
+      font-size: 10.5px;
+      letter-spacing: 0.1em;
+      line-height: 1.7;
+      text-transform: uppercase;
+    }
+
+    .bookstore-meta .coral {
+      color: var(--coral);
+    }
+
+    /* Dashed Ribbon Divider */
+    .ribbon-bar {
+      border-top: 1.5px dashed var(--ink);
+      border-bottom: 1.5px dashed var(--ink);
+      padding: 12px 0;
+      margin-bottom: 64px;
+      overflow: hidden;
+      white-space: nowrap;
+      background: rgba(255, 255, 255, 0.18);
+    }
+
+    .ribbon-track {
+      display: inline-flex;
+      align-items: center;
+      gap: 28px;
+      padding-left: 16px;
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .ribbon-track span.ast {
+      color: var(--coral);
+    }
+
+    /* 12 Books Grid */
+    .books-grid {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 0 32px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 22px;
+    }
+
+    .book-card {
+      position: relative;
+      min-height: 255px;
+      padding: 20px;
+      border: 1.5px solid var(--ink);
+      box-shadow: 6px 6px 0 var(--ink);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      cursor: pointer;
+      transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+      user-select: none;
+      text-align: left;
+      color: var(--ink);
+    }
+
+    .book-card:hover,
+    .book-card:focus-visible {
+      transform: translateY(-7px) rotate(-1.35deg);
+      box-shadow: 9px 10px 0 var(--ink);
+      outline: none;
+      z-index: 2;
+    }
+
+    .book-card.light-text {
+      color: var(--modal-cream);
+    }
+
+    .card-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+    }
+
+    .card-num {
+      font-size: 10px;
+      letter-spacing: 0.08em;
+    }
+
+    .card-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      border: 1.25px solid currentColor;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .card-icon svg {
+      width: 17px;
+      height: 17px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.7;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .card-middle {
+      margin-top: 26px;
+      margin-bottom: 22px;
+    }
+
+    .card-date {
+      font-size: 9.5px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      opacity: 0.9;
+    }
+
+    .card-title {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: 26px;
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+    }
+
+    .card-footer {
+      font-size: 9.5px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    /* ==============================
+       FOOTER
+    ============================== */
+    footer.site-footer {
+      background: var(--ink);
+      color: var(--cream);
+      padding: 28px 52px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .footer-center {
+      text-align: center;
+      line-height: 1.65;
+    }
+
+    /* ==============================
+       MODAL OVERLAY
+    ============================== */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(24, 41, 52, 0.72);
+      backdrop-filter: blur(2px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      z-index: 100;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+
+    .modal-backdrop.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-card {
+      width: 100%;
+      max-width: 630px;
+      background: var(--modal-cream);
+      border: 2px solid var(--ink);
+      box-shadow: 10px 10px 0 var(--coral), 10px 10px 0 2px var(--ink);
+      padding: 42px 48px 36px;
+      position: relative;
+      transform: translateY(16px) scale(0.98);
+      transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    .modal-backdrop.open .modal-card {
+      transform: translateY(0) scale(1);
+    }
+
+    .modal-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 24px;
+    }
+
+    .modal-chapter-label {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--blue);
+      padding-top: 6px;
+    }
+
+    .modal-close {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--mustard);
+      border: 1.5px solid var(--ink);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 15px;
+      color: var(--ink);
+      transition: transform 0.2s ease;
+    }
+
+    .modal-close:hover {
+      transform: scale(1.07);
+    }
+
+    .modal-badge {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: var(--mustard);
+      border: 1.5px solid var(--ink);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 22px;
+    }
+
+    .modal-badge svg {
+      width: 26px;
+      height: 26px;
+      stroke: var(--ink);
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .modal-date {
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--coral);
+      margin-bottom: 10px;
+    }
+
+    .modal-title {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: clamp(42px, 5.5vw, 62px);
+      line-height: 0.94;
+      color: var(--blue);
+      margin-bottom: 26px;
+    }
+
+    .modal-divider {
+      border: none;
+      border-top: 1.5px dashed var(--ink);
+      margin: 24px 0;
+    }
+
+    .modal-body {
+      font-size: 15px;
+      line-height: 1.78;
+      color: var(--ink);
+      white-space: pre-line;
+    }
+
+    .modal-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .modal-footer .us {
+      color: var(--coral);
+      font-weight: 600;
+    }
+
+    .celebrate-banner {
+      margin-top: 20px;
+      padding: 12px 16px;
+      background: var(--mustard);
+      border: 1.5px solid var(--ink);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .celebrate-banner.show {
+      display: flex;
+    }
+
+    .celebrate-btn {
+      background: var(--coral);
+      color: var(--modal-cream);
+      border: 1.5px solid var(--ink);
+      padding: 6px 12px;
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    /* ==============================
+       RESPONSIVE DESIGN
+    ============================== */
+    @media (max-width: 960px) {
+      .books-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .road-intro {
+        position: relative;
+        top: 0;
+        left: 0;
+        padding: 40px 32px 0;
+      }
+      .ms-bright, .ms-first-light, .ms-soft-days, .ms-weathering, .ms-still-here, .ms-golden-hours {
+        transform: scale(0.9);
+      }
+    }
+
+    @media (max-width: 600px) {
+      header.topbar {
+        padding: 20px 20px;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+      .topbar-center {
+        order: 3;
+        width: 100%;
+        justify-content: center;
+      }
+      .hero {
+        padding: 32px 20px 52px;
+      }
+      .hero-sun-note {
+        right: 20px;
+        top: 16px;
+      }
+      .books-grid {
+        grid-template-columns: 1fr;
+      }
+      .modal-card {
+        padding: 28px 24px;
+      }
+      footer.site-footer {
+        flex-direction: column;
+        gap: 16px;
+        padding: 24px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO + WINDING ROAD GRADIENT WRAPPER -->
+  <div class="hero-road-wrapper">
+
+    <!-- TOP NAVIGATION -->
+    <header class="topbar">
+      <a href="#" class="brand">
+        <span class="brand-badge">
+          <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+        </span>
+        <span class="brand-text">Life<br>Book</span>
+      </a>
+
+      <div class="topbar-center">
+        <span class="coral-dot"></span>
+        <span>AN ARCHIVE OF US &nbsp;|&nbsp; 2023—FOREVER</span>
+      </div>
+
+      <a href="#bookstore" class="topbar-link">OPEN THE ARCHIVE ↗</a>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+      <div class="hero-sun-note">
+        <svg viewBox="0 0 40 40" stroke-width="1.8" stroke-linecap="round">
+          <circle cx="20" cy="20" r="7"/>
+          <line x1="20" y1="4" x2="20" y2="9"/>
+          <line x1="20" y1="31" x2="20" y2="36"/>
+          <line x1="4" y1="20" x2="9" y2="20"/>
+          <line x1="31" y1="20" x2="36" y2="20"/>
+          <line x1="8.7" y1="8.7" x2="12.2" y2="12.2"/>
+          <line x1="27.8" y1="27.8" x2="31.3" y2="31.3"/>
+          <line x1="31.3" y1="8.7" x2="27.8" y2="12.2"/>
+          <line x1="12.2" y1="27.8" x2="8.7" y2="31.3"/>
+        </svg>
+        <div>MADE OF<br>LITTLE MOMENTS</div>
+      </div>
+
+      <div class="hero-main">
+        <div class="kicker">
+          <span>A FIELD GUIDE TO OUR FAVOURITE STORY</span>
+          <span class="sparkle">✳</span>
+        </div>
+
+        <h1 class="hero-title">
+          Our story,<br>
+          <em>written</em> in dates.
+        </h1>
+
+        <p class="hero-sub">
+          Twelve little chapters. One very big feeling.<br>
+          Start at the beginning, stay for forever.
+        </p>
+      </div>
+
+      <div class="hero-bottom">
+        <a href="#winding-road" class="turn-page-btn">
+          <span>TURN THE PAGE</span>
+          <span class="turn-page-circle">↓</span>
+        </a>
+
+        <div class="est-stamp">
+          <span class="small">EST.</span>
+          <span class="year">2023</span>
+          <span class="small">&amp; ALWAYS</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 01 / THE WINDING ROAD -->
+    <section class="road-section" id="winding-road">
+      <div class="road-intro">
+        <div class="section-num">01 / THE WINDING ROAD</div>
+        <h2 class="section-heading">
+          Every forever
+          <em>starts</em>
+          <em>somewhere.</em>
+        </h2>
+        <p>
+          A little trail of the days that made us. Follow the weather, find the feeling.
+        </p>
+      </div>
+
+      <!-- Weather Milestones -->
+      <div class="milestone-inline ms-bright">
+        <span>☼</span>
+        <span>BRIGHT BEGINNINGS</span>
+      </div>
+
+      <div class="milestone ms-first-light">
+        <svg width="46" height="46" viewBox="0 0 46 46" fill="none" stroke="#e27265" stroke-width="1.6" stroke-linecap="round">
+          <circle cx="23" cy="23" r="9"/>
+          <line x1="23" y1="5" x2="23" y2="11"/>
+          <line x1="23" y1="35" x2="23" y2="41"/>
+          <line x1="5" y1="23" x2="11" y2="23"/>
+          <line x1="35" y1="23" x2="41" y2="23"/>
+          <line x1="10.3" y1="10.3" x2="14.5" y2="14.5"/>
+          <line x1="31.5" y1="31.5" x2="35.7" y2="35.7"/>
+          <line x1="35.7" y1="10.3" x2="31.5" y2="14.5"/>
+          <line x1="14.5" y1="31.5" x2="10.3" y2="35.7"/>
+        </svg>
+        <span>FIRST LIGHT</span>
+      </div>
+
+      <div class="milestone ms-soft-days">
+        <svg width="48" height="32" viewBox="0 0 48 32" fill="#3b6998">
+          <path d="M14 28h22a8 8 0 0 0 1.2-15.9A11 11 0 0 0 16.4 10 9 9 0 0 0 14 28z"/>
+        </svg>
+        <span>SOFT DAYS</span>
+      </div>
+
+      <div class="milestone-inline ms-weathering">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 16.2A4.5 4.5 0 0 0 17.5 8h-1.8A7 7 0 1 0 4 14.9"/>
+          <path d="M16 14v6M12 16v6M8 14v6"/>
+        </svg>
+        <span>WEATHERING IT TOGETHER</span>
+      </div>
+
+      <div class="milestone ms-still-here">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="#9bc7c5">
+          <path d="M20 2 C22 14, 26 18, 38 20 C26 22, 22 26, 20 38 C18 26, 14 22, 2 20 C14 18, 18 14, 20 2 Z"/>
+        </svg>
+        <span>STILL HERE</span>
+      </div>
+
+      <div class="milestone-inline ms-golden-hours">
+        <span>☆</span>
+        <span>GOLDEN HOURS</span>
+      </div>
+
+      <!-- Dashed Winding Path SVG -->
+      <div class="road-svg-container">
+        <svg class="road-svg" id="road-svg" viewBox="0 0 1000 1650" preserveAspectRatio="none">
+          <path
+            id="road-path"
+            d="M 500 60
+               C 440 160, 445 270, 505 360
+               C 560 445, 555 555, 475 645
+               C 395 735, 395 860, 480 950
+               C 595 1065, 615 1190, 520 1295
+               C 410 1410, 405 1490, 500 1565"
+            fill="none"
+            stroke="#182934"
+            stroke-width="2.5"
+            stroke-dasharray="9 9"
+            stroke-linecap="round"
+          />
+        </svg>
+
+        <!-- Moving Overlapping Hearts Marker -->
+        <div id="road-hearts" aria-hidden="true">
+          <svg viewBox="0 0 48 40" width="42" height="36">
+            <!-- Back Blue Heart -->
+            <path
+              d="M31 7.5c-2.2 0-4.2 1-5.5 2.7-1.3-1.7-3.3-2.7-5.5-2.7-3.9 0-7 3.1-7 7 0 5.4 6.8 10.2 12.5 15.1 5.7-4.9 12.5-9.7 12.5-15.1 0-3.9-3.1-7-7-7z"
+              fill="#3b6998"
+              stroke="#182934"
+              stroke-width="2"
+              stroke-linejoin="round"
+            />
+            <!-- Front Coral Heart -->
+            <path
+              d="M21.5 10c-2.5 0-4.8 1.2-6.2 3.1C13.9 11.2 11.6 10 9.1 10 4.6 10 1 13.6 1 18.1c0 6.2 7.8 11.7 14.3 17.4 6.5-5.7 14.3-11.2 14.3-17.4 0-4.5-3.6-8.1-8.1-8.1z"
+              fill="#e27265"
+              stroke="#182934"
+              stroke-width="2"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </div>
+      </div>
+
+      <!-- LIFE BOOK STORE BUILDING -->
+      <div class="store-wrapper" id="store-wrapper">
+        <div class="store-building">
+          <div class="store-sign">
+            <span class="small">LIFE BOOK</span>
+            <span class="big">STORE</span>
+          </div>
+          <div class="store-door" id="store-door"></div>
+        </div>
+        <div class="store-caption">THE PLACE WHERE OUR CHAPTERS LIVE</div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- 02 / THE BOOK STORE -->
+  <section class="bookstore-section" id="bookstore">
+    <div class="bookstore-header">
+      <div>
+        <div class="section-num">02 / THE BOOK STORE</div>
+        <h2 class="section-heading" style="margin-bottom:0;">
+          Pick a chapter.
+          <em>Keep the feeling.</em>
+        </h2>
+      </div>
+
+      <div class="bookstore-meta">
+        <div>12 BOOKS ON THE SHELF</div>
+        <div class="coral">CLICK ONE TO READ INSIDE</div>
+      </div>
+    </div>
+
+    <!-- Dashed Ribbon Strip -->
+    <div class="ribbon-bar">
+      <div class="ribbon-track">
+        <span class="ast">*</span><span>OUR FAVOURITE STORY</span>
+        <span class="ast">*</span><span>OUR FAVOURITE STORY</span>
+        <span class="ast">*</span><span>OUR FAVOURITE STORY</span>
+        <span class="ast">*</span><span>OUR FAVOURITE STORY</span>
+        <span class="ast">*</span><span>OUR FAVOURITE STORY</span>
+        <span class="ast">*</span><span>OUR FAVOURITE STORY</span>
+        <span class="ast">*</span><span>OUR FAVOURITE STORY</span>
+        <span class="ast">*</span>
+      </div>
+    </div>
+
+    <!-- 12 Chapters Grid -->
+    <div class="books-grid" id="books-grid"></div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <span class="brand-badge">
+      <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+    </span>
+
+    <div class="footer-center">
+      MADE WITH ALL THE SMALL THINGS<br>
+      AND ONE VERY LARGE LOVE.
+    </div>
+
+    <div>2023—∞</div>
+  </footer>
+
+  <!-- CHAPTER MODAL -->
+  <div class="modal-backdrop" id="modal-backdrop" aria-hidden="true">
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <div class="modal-top">
+        <div class="modal-chapter-label" id="modal-chapter">CHAPTER 01 / 12</div>
+        <button class="modal-close" id="modal-close" aria-label="Close chapter">✕</button>
+      </div>
+
+      <div class="modal-badge" id="modal-badge"></div>
+      <div class="modal-date" id="modal-date">2ND AUGUST 2023</div>
+      <h3 class="modal-title" id="modal-title">Remember when we first met?</h3>
+
+      <hr class="modal-divider" />
+
+      <div class="modal-body" id="modal-body"></div>
+
+      <div class="celebrate-banner" id="celebrate-banner">
+        <span>Cheers to forever togetherness! ❤️</span>
+        <button class="celebrate-btn" id="retrigger-confetti">More Confetti 🎉</button>
+      </div>
+
+      <hr class="modal-divider" />
+
+      <div class="modal-footer">
+        <div>FILED UNDER: <span class="us">US</span></div>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="#e27265" stroke="#182934" stroke-width="2">
+          <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // SVG Icons library matching the screenshots
+    const ICONS = {
+      coffee: `<svg viewBox="0 0 24 24"><path d="M17 8h1a4 4 0 1 1 0 8h-1"/><path d="M3 8h14v7a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V8z"/><line x1="6" y1="2" x2="6" y2="5"/><line x1="10" y1="2" x2="10" y2="5"/><line x1="14" y1="2" x2="14" y2="5"/></svg>`,
+      star: `<svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`,
+      heart: `<svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>`,
+      lock: `<svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>`,
+      calendar: `<svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>`,
+      sparkle: `<svg viewBox="0 0 24 24"><path d="M11 3L12.8 8.2L18 10L12.8 11.8L11 17L9.2 11.8L4 10L9.2 8.2L11 3Z"/><path d="M19 15v4M17 17h4"/></svg>`,
+      rain: `<svg viewBox="0 0 24 24"><path d="M20 16.2A4.5 4.5 0 0 0 17.5 8h-1.8A7 7 0 1 0 4 14.9"/><path d="M16 14v5M12 16v5M8 14v5"/></svg>`,
+      moon: `<svg viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>`
+    };
+
+    // All 12 Chapters with exact colors, icons, dates, titles & stories
+    const CHAPTERS = [
+      {
+        num: '01',
+        date: '2ND AUGUST 2023',
+        title: 'Remember when we first met?',
+        bg: '#f3c465',
+        icon: 'coffee',
+        text: `Little did we know, a simple hello would become our favourite story. Two strangers, unaware of the magic waiting ahead. And somewhere between those first conversations, we found a reason to never stop talking.`
+      },
+      {
+        num: '02',
+        date: '14TH NOVEMBER 2023',
+        title: 'The Beginning',
+        bg: '#f29f94',
+        icon: 'star',
+        text: `A date that quietly changed the course of our lives, When two hearts unknowingly began writing one story. No promises of forever, just a beautiful beginning, And a feeling that neither of us wanted to let go.`
+      },
+      {
+        num: '03',
+        date: '14TH FEBRUARY 2024',
+        title: 'The First Celebration of Love',
+        bg: '#b5d9cc',
+        icon: 'heart',
+        text: `Our first little celebration of something so beautifully ours, A thousand unspoken feelings wrapped in a single day. Love was no longer just a feeling we stumbled upon, It was something we were learning to call ours.`
+      },
+      {
+        num: '04',
+        date: '15TH JUNE 2024',
+        title: 'Our Small Secret',
+        bg: '#89b3d9',
+        icon: 'lock',
+        text: `A little world hidden away from everyone else's eyes, A secret only our hearts knew how to keep. Some memories don't need an audience, They become special simply because they're ours.`
+      },
+      {
+        num: '05',
+        date: '14TH NOVEMBER 2024',
+        title: 'Year One',
+        bg: '#f2ae61',
+        icon: 'calendar',
+        text: `365 days of laughter, little fights and endless memories, Of learning each other's silences and understanding our words. One year down, a thousand dreams still waiting, And somehow, I'd still choose you in every lifetime.`
+      },
+      {
+        num: '06',
+        date: '14TH FEBRUARY 2025',
+        title: 'The Second Celebration of Love',
+        bg: '#e89dae',
+        icon: 'heart',
+        text: `Another Valentine's Day, another chapter of us, But this time, with a thousand more reasons to smile. If the first taught us what love could feel like, The second showed us how beautifully it could grow.`
+      },
+      {
+        num: '07',
+        date: '23RD JULY 2025',
+        title: 'Jab We Met',
+        bg: '#cbc28d',
+        icon: 'sparkle',
+        text: `Like two worlds colliding at just the right time, An unexpected chapter in our already beautiful story. Some meetings are written long before they happen, And ours became a memory we'd replay forever.`
+      },
+      {
+        num: '08',
+        date: '21ST OCTOBER 2025',
+        title: 'In the Chaos',
+        bg: '#94b7c7',
+        icon: 'rain',
+        text: `When life got messy and the world felt a little too loud, We found comfort in being each other's quiet place. Not every chapter was easy, not every day was perfect, But even in the chaos, we kept finding our way back.`
+      },
+      {
+        num: '09',
+        date: '14TH NOVEMBER 2025',
+        title: 'Year Two',
+        bg: '#d98d6c',
+        icon: 'star',
+        text: `Two years of choosing each other, again and again, Of growing through seasons, distance and change. Our story was no longer just about falling in love, It was about learning to stay, and loving even deeper.`
+      },
+      {
+        num: '10',
+        date: '14TH FEBRUARY 2026',
+        title: 'The Third Celebration of Love',
+        bg: '#e3a3ad',
+        icon: 'heart',
+        text: `Three celebrations, countless memories, one beautiful us, The butterflies may have changed, but the feeling never faded. With every passing year, my heart finds new reasons, To fall for the same person all over again.`
+      },
+      {
+        num: '11',
+        date: '3RD AUGUST 2026',
+        title: 'In Our Own Universe',
+        bg: '#9bb5dc',
+        icon: 'moon',
+        text: `Somewhere between your world and mine, we built our own, Where little moments become galaxies of memories. A universe where time slows down when we're together, And nothing feels quite as beautiful as being us.`
+      },
+      {
+        num: '12',
+        date: '14TH NOVEMBER 2026',
+        title: 'Forever and Ever…',
+        bg: '#de7164',
+        icon: 'heart',
+        lightText: true,
+        isFinale: true,
+        text: `Three years behind us, and forever ahead, If I could relive it all, I'd still find my way to you. Through every beginning, every chaos and every tomorrow, May our story never find its final page. Because with you, forever will never be long enough. ❤️`
+      }
+    ];
+
+    // Render 12 Book Cards
+    const gridEl = document.getElementById('books-grid');
+    CHAPTERS.forEach((chap, idx) => {
+      const btn = document.createElement('button');
+      btn.className = `book-card${chap.lightText ? ' light-text' : ''}`;
+      btn.style.backgroundColor = chap.bg;
+      btn.innerHTML = `
+        <div class="card-top">
+          <span class="card-num">${chap.num}</span>
+          <span class="card-icon">${ICONS[chap.icon]}</span>
+        </div>
+        <div class="card-middle">
+          <div class="card-date">${chap.date}</div>
+          <h3 class="card-title">${chap.title}</h3>
+        </div>
+        <div class="card-footer">
+          <span>READ CHAPTER</span>
+          <span>↗</span>
+        </div>
+      `;
+      btn.addEventListener('click', () => openChapterModal(idx));
+      gridEl.appendChild(btn);
+    });
+
+    // Modal Logic
+    const modalBackdrop = document.getElementById('modal-backdrop');
+    const modalChapter = document.getElementById('modal-chapter');
+    const modalBadge = document.getElementById('modal-badge');
+    const modalDate = document.getElementById('modal-date');
+    const modalTitle = document.getElementById('modal-title');
+    const modalBody = document.getElementById('modal-body');
+    const modalClose = document.getElementById('modal-close');
+    const celebrateBanner = document.getElementById('celebrate-banner');
+    const retriggerBtn = document.getElementById('retrigger-confetti');
+
+    function launchConfetti() {
+      if (typeof confetti !== 'function') return;
+      const colors = ['#e27265', '#f4c867', '#3b6998', '#b5d9cc', '#182934'];
+      confetti({
+        particleCount: 90,
+        spread: 75,
+        origin: { y: 0.6 },
+        colors
+      });
+      setTimeout(() => {
+        confetti({
+          particleCount: 60,
+          angle: 60,
+          spread: 55,
+          origin: { x: 0 },
+          colors
+        });
+        confetti({
+          particleCount: 60,
+          angle: 120,
+          spread: 55,
+          origin: { x: 1 },
+          colors
+        });
+      }, 220);
+    }
+
+    function openChapterModal(index) {
+      const chap = CHAPTERS[index];
+      modalChapter.textContent = `CHAPTER ${chap.num} / 12`;
+      modalBadge.innerHTML = ICONS[chap.icon];
+      modalDate.textContent = chap.date;
+      modalTitle.textContent = chap.title;
+      modalBody.textContent = chap.text;
+
+      if (chap.isFinale) {
+        celebrateBanner.classList.add('show');
+        launchConfetti();
+      } else {
+        celebrateBanner.classList.remove('show');
+      }
+
+      modalBackdrop.classList.add('open');
+      modalBackdrop.setAttribute('aria-hidden', 'false');
+    }
+
+    function closeChapterModal() {
+      modalBackdrop.classList.remove('open');
+      modalBackdrop.setAttribute('aria-hidden', 'true');
+    }
+
+    modalClose.addEventListener('click', closeChapterModal);
+    modalBackdrop.addEventListener('click', (e) => {
+      if (e.target === modalBackdrop) closeChapterModal();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeChapterModal();
+    });
+    retriggerBtn.addEventListener('click', launchConfetti);
+
+    // Smooth Scroll-Driven Moving Hearts along the Winding Road
+    const roadSection = document.getElementById('winding-road');
+    const roadSvg = document.getElementById('road-svg');
+    const roadPath = document.getElementById('road-path');
+    const roadHearts = document.getElementById('road-hearts');
+    const storeDoor = document.getElementById('store-door');
+
+    let targetProgress = 0;
+    let currentProgress = 0;
+
+    function computeScrollProgress() {
+      const rect = roadSection.getBoundingClientRect();
+      const vh = window.innerHeight;
+      // Start moving when top of road enters middle of viewport, finish when bottom reaches lower viewport
+      const start = vh * 0.55;
+      const end = rect.height - vh * 0.35;
+      const scrolled = start - rect.top;
+      targetProgress = Math.max(0, Math.min(1, scrolled / Math.max(1, end)));
+    }
+
+    function updateHeartsPosition() {
+      currentProgress += (targetProgress - currentProgress) * 0.14;
+
+      const pathLength = roadPath.getTotalLength();
+      const svgWidth = roadSection.clientWidth;
+      const svgHeight = roadSection.clientHeight;
+
+      // Up to 86% progress, follow the dashed curve; from 86% to 100%, glide smoothly into the Life Book Store doorway
+      const pathProgress = Math.min(currentProgress / 0.88, 1);
+      const pt = roadPath.getPointAtLength(pathProgress * pathLength);
+
+      let x = (pt.x / 1000) * svgWidth;
+      let y = (pt.y / 1650) * svgHeight;
+
+      if (currentProgress > 0.84) {
+        const doorRect = storeDoor.getBoundingClientRect();
+        const sectionRect = roadSection.getBoundingClientRect();
+        const doorCenterX = doorRect.left - sectionRect.left + doorRect.width / 2;
+        const doorCenterY = doorRect.top - sectionRect.top + doorRect.height * 0.58;
+
+        const blend = Math.min(1, (currentProgress - 0.84) / 0.16);
+        x = x + (doorCenterX - x) * blend;
+        y = y + (doorCenterY - y) * blend;
+      }
+
+      roadHearts.style.transform = `translate3d(${x}px, ${y}px, 0) translate(-50%, -50%)`;
+      requestAnimationFrame(updateHeartsPosition);
+    }
+
+    window.addEventListener('scroll', computeScrollProgress, { passive: true });
+    window.addEventListener('resize', computeScrollProgress);
+    computeScrollProgress();
+    requestAnimationFrame(updateHeartsPosition);
+  </script>
+</body>
+</html>
